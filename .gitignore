@@ -1,0 +1,5 @@
+.sass-cache
+*.~
+\#*\#
+assets
+!assets/README

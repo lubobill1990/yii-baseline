@@ -1,0 +1,116 @@
+// Here is where you can define your constants for your application and to configure the blueprint framework.
+// Feel free to delete these if you want keep the defaults:
+
+$blueprint-grid-columns: 24;
+$blueprint-container-size: 950px;
+$blueprint-grid-margin: 10px;
+
+// Use this to calculate the width based on the total width.
+// Or you can set $blueprint-grid-width to a fixed value and unset $blueprint-container-size -- it will be calculated for you.
+$blueprint-grid-width: ($blueprint-container-size + $blueprint-grid-margin) / $blueprint-grid-columns - $blueprint-grid-margin;
+
+.container {
+  width: $blueprint-container-size;
+  margin: 0 auto;
+  position: relative;
+}
+
+#page_header {
+  background: url("/images/header/header-bg.png") repeat-x scroll 0 0 transparent;
+  height: 48px;
+  width: 100%;
+  z-index: 20;
+  .top-nav-profile {
+    min-width: 120px;
+    position: absolute;
+    right: 0;
+    top: 1px;
+    z-index: 10;
+  }
+  .top-nav-profile {
+
+    .zu-top-nav-userinfo {
+      background: none repeat scroll 0 0 transparent;
+      border-top: 0 none;
+      box-shadow: none;
+      color: white;
+      height: 44px;
+      line-height: 44px;
+      overflow: hidden;
+      position: relative;
+      text-decoration: none;
+      text-indent: 46px;
+      text-overflow: ellipsis;
+      text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+      white-space: nowrap;
+      .avatar {
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        box-shadow: 0 1px 0 rgba(255, 255, 255, 0.15);
+        height: 25px;
+        left: 10px;
+        position: absolute;
+        top: 8px;
+        width: 25px;
+      }
+    }
+    .top-nav-dropdown {
+      top: 44px;
+      a {
+        width: 120px;
+      }
+
+    }
+    a {
+      background-color: #0672C2;
+      display: block;
+      width: 120px;
+    }
+  }
+}
+.top-nav-dropdown {
+  display: none;
+  left: 0;
+  margin: 0;
+  position: absolute;
+  li {
+    list-style: none outside none;
+    margin: 0;
+  }
+  a {
+    background-color: #0672C2;
+    border-top: 1px solid #006BBF;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);
+    color: white;
+    display: block;
+    height: 36px;
+    line-height: 36px;
+    overflow: hidden;
+    text-decoration: none;
+    text-overflow: ellipsis;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+    white-space: nowrap;
+    width: 145px;
+  }
+  .zg-icon {
+    height: 20px;
+    margin: 0 11px 0 15px;
+    vertical-align: -7px;
+    width: 20px;
+  }
+}
+#page_footer{
+  margin:0 auto;
+  color: #999999;
+  text-align: right;
+  .container{
+    border-top: 1px solid #CCCCCC;
+    padding: 20px 15px;
+  }
+}
+.zg-left {
+  float: left;
+}
+a {
+  color: #225599;
+  text-decoration: none;
+}
