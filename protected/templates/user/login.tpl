@@ -1,6 +1,6 @@
 <form action="" method="post">
     <div>
-        <label for="login_username">邮箱</label>
+        <label for="login_username">邮箱/用户名</label>
         <input type="text" name="LoginForm[username]" id='login_username' value="{$model->username}">
     </div>
     <div>

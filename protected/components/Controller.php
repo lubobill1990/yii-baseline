@@ -29,5 +29,6 @@ class Controller extends CController
         Yii::import('application.components.common');
 
         $this->smarty->assign('login_user',Yii::app()->user->user);
+        $this->smarty->assign('YiiApp',Yii::app());
     }
 }

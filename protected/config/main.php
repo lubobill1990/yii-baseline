@@ -42,6 +42,14 @@ return array(
                 'ext.feedback'=>'ext.feedback.templates',
             ),
         ),
+        'mailer'=>array(
+            'class'=>'ext.SwiftMailer.CSwiftMailer',
+            'email'=>'npeasy@163.com',
+            'password'=>'npeasypass',
+            'smtpServer'=>'smtp.163.com',
+            'smtpPort'=>25,
+            'fromName'=>"Real-time Server"
+        ),
         'request' => array(
             'baseUrl' => '',
         ),
@@ -50,10 +58,14 @@ return array(
 			'rules'=>array(
                 'signup'=>'User/signup',
                 'login'=>'User/login',
+                'account/activate'=>"User/activate",
+                'account/retrieve_password'=>'User/retrievePassword',
+                'account/reset_password'=>'User/resetPassword',
+                'account/block'=>'User/block',
 				'<controller:\w+>/<id:\d+>'=>'<controller>/view',
 				'<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
 				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
-                '<a:\w+>'=>'Site/error'
+//                '<a:\w+>'=>'Site/error'
 			),
 		),
 
@@ -92,7 +104,7 @@ return array(
 		// this is used in contact page
 		'adminEmail'=>'lubobill1990@163.com',
         'page_title'=>array(
-            'default'=>'请在配置文件里配置默认标题'
+            'default'=>'RTS-Client'
         )
 	),
 );
