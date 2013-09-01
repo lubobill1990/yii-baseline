@@ -17,3 +17,9 @@ yii-startpoint
 3. 用户注册及登录
 4. compass配置
 5. smarty模板支持
+
+
+Requirement
+===========
+1. compass
+ 1.1 zurb-foundation

@@ -8,10 +8,16 @@
 class UserIdentity extends CUserIdentity
 {
     private $user_id;
+    private $user_activated;
 
     public function getId()
     {
         return $this->user_id;
+    }
+
+    public function getUserActivated()
+    {
+        return $this->user_activated;
     }
 
     /**
@@ -30,7 +36,8 @@ class UserIdentity extends CUserIdentity
             $this->errorCode = self::ERROR_USERNAME_INVALID;
         } else {
             $this->user_id = $user->id;
-
+            $this->username = $user->username;
+            $this->user_activated = $user->has_been_activated == 'yes';
             if ($user->authorizePassword($this->password)) {
                 $this->errorCode = self::ERROR_NONE;
             } else {

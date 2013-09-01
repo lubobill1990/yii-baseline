@@ -10,6 +10,7 @@ class LoginForm extends CFormModel
     public $username;
     public $password;
     public $rememberMe;
+    public $userActivated = false;
 
     private $_identity;
 
@@ -63,6 +64,9 @@ class LoginForm extends CFormModel
         if ($this->_identity === null) {
             $this->_identity = new UserIdentity($this->username, $this->password);
             $this->_identity->authenticate();
+        }
+        if (!$this->_identity->getUserActivated() && Yii::app()->params['userActivatedNeeded']) {
+            return false;
         }
         if ($this->_identity->errorCode === UserIdentity::ERROR_NONE) {
             $duration = $this->rememberMe ? 3600 * 24 * 30 : 0; // 30 days

@@ -61,7 +61,10 @@ class CSmarty extends Smarty
      */
     private function normalizeTemplate($template, $use_module_template_dir)
     {
-        if ($template == NULL) {
+        if(Common::startsWith($template,'file:[0]')){
+            return $template;
+        }
+        if (empty($template)) {
             $template = Yii::app()->controller->id . '/' . Yii::app()->controller->action->id . '.tpl';
         } else {
             //if param template is not end with .tpl, then append $template with it
@@ -84,18 +87,6 @@ class CSmarty extends Smarty
     }
 
     /**
-     * 获取通过Common::register()和Common::registerOutController()注册的静态文件的html代码
-     * @return string css/js等静态文件的html代码
-     */
-    protected function getScripts()
-    {
-        $scripts = '<head><title></title></head>';
-        Yii::app()->clientScript->render($scripts);
-        $scripts = substr($scripts, 6, -22);
-        return $scripts;
-    }
-
-    /**
      * smarty根据注册的变量渲染相应的模板
      * @param null $template 模板路径
      * @param array $array   注册变量的数组
@@ -109,23 +100,23 @@ class CSmarty extends Smarty
         $this->display($template);
     }
 
-
     /**
      * render template and put the content into layout
      * @param null $template
      * @param array $array
-     * @param string $layout
-     * @param bool $use_module_template_dir
+     * @param string $parent_tpl
+     * @param bool $use_module_dir
+     * @return void
+     * @internal param string $layout
+     * @internal param bool $use_module_template_dir
      */
-    function renderAll($template = NULL, $array = array(), $layout = 'file:[0]layouts/main.tpl', $use_module_template_dir = true)
-    {
+    public function renderAll($template=NULL,$array=array(),$parent_tpl="file:[0]layouts/main.tpl",$use_module_dir=true){
         $this->assignValue($array);
-        $template = $this->normalizeTemplate($template, $use_module_template_dir);
-        $this->assign('script_tpl', $this->getScripts());
-        $this->assign('content_tpl', parent::fetch($template));
-        $this->display($layout);
+        $template = $this->normalizeTemplate($template, $use_module_dir);
+        $template="extends:{$parent_tpl}|{$template}";
+        $this->display($template);
+//        Yii::app()->end();
     }
-
     function fetchString($template = NULL, $array = array(), $use_module_template_dir = true)
     {
         $this->assignValue($array);

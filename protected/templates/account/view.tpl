@@ -1,0 +1,3 @@
+{block name=left}
+
+{/block}

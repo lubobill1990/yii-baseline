@@ -10,8 +10,7 @@ class SiteController extends Controller
         return array(
             // captcha action renders the CAPTCHA image displayed on the contact page
             'captcha' => array(
-                'class' => 'CCaptchaAction',
-                'backColor' => 0xFFFFFF,
+                'class' => 'application.controllers.actions.DoubanCaptchaAction',
             ),
             // page action renders "static" pages stored under 'protected/views/site/pages'
             // They can be accessed via: index.php?r=site/page&view=FileName
@@ -37,7 +36,6 @@ class SiteController extends Controller
      */
     public function actionError()
     {
-
         $this->smarty->renderAll('error');
     }
 
@@ -73,5 +71,9 @@ class SiteController extends Controller
     {
         Yii::app()->user->logout();
         $this->redirect(Yii::app()->homeUrl);
+    }
+
+    public function actionTest(){
+        echo Yii::app()->user->name;
     }
 }

@@ -21,14 +21,75 @@ class Controller extends CController
 	 */
 	public $breadcrumbs=array();
 
-    public $smarty;
     public function init() {
-        $this -> smarty = Yii::app() -> smarty;
-        $this->smarty->assign('controller',Yii::app()->controller->id);
+        $this->smarty->assign('controller',$this);
         $this->smarty->assign('page_title',Yii::app()->params['page_title']['default']);
         Yii::import('application.components.common');
 
         $this->smarty->assign('login_user',Yii::app()->user->user);
         $this->smarty->assign('YiiApp',Yii::app());
+    }
+    private $_smarty = null;
+
+    public function getSmarty()
+    {
+        return empty($this->_smarty) ? $this->_smarty = Yii::app()->smarty : $this->_smarty;
+    }
+    public function setPageTitle($title_array)
+    {
+        if (!is_array($title_array)) {
+            $arg_num = func_num_args();
+            $title_array = array();
+            for ($i = 0; $i < $arg_num; ++$i) {
+                $title_array[] = func_get_arg($i);
+            }
+        }
+
+        $page_title = '';
+        $coma = '';
+        foreach ($title_array as $item) {
+            if (empty($item)) {
+                continue;
+            }
+            $page_title .= $coma . $item;
+            $coma = ' | ';
+        }
+        if ($title_array[count($title_array) - 1] != Yii::app()->name) {
+            $page_title .= $coma . Yii::app()->name;
+        }
+        $this->smarty->assign('page_title',$page_title);
+        return $page_title;
+    }
+
+    protected function requireValues($array,$key_array){
+        if(is_array($array)){
+            $validate_array=$array;
+        }else{
+            $validate_array=$_REQUEST;
+        }
+        if (!is_array($key_array)) {
+            $arg_num = func_num_args();
+            $key_array = array();
+            for ($i = 1; $i < $arg_num; ++$i) {
+                $key_array[] = func_get_arg($i);
+            }
+        }
+
+        foreach($key_array as $key){
+            if(!array_key_exists($key,$validate_array)){
+                return false;
+            }
+        }
+        return true;
+    }
+    private $message=array();
+    protected function throwMessage($key,$msg,$throw=true){
+        $this->message[$key]=$msg;
+        if($throw){
+            throw new Exception("{$key}:{$msg}");
+        }
+    }
+    protected function getThrownMessage(){
+        return $this->message;
     }
 }

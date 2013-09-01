@@ -8,13 +8,27 @@
  */
 class WebUser extends CWebUser
 {
-    protected $user;
-    public function getUser(){
-        return empty($this->user)?$this->user=User::model()->findByPk($this->id):$this->user;
+    protected $user = NULL;
+
+    public function getUser()
+    {
+        if ($this->user === 0) {
+            return NULL;
+        } elseif ($this->user === NULL) {
+            $this->user = User::model()->findByPk($this->id);
+            if (!empty($this->user) && $this->user->blocked == 'yes') {
+                $this->logout();
+                Yii::app()->controller->redirect("/account/blocked");
+            }
+            if (empty($this->user)) {
+                $this->user = 0;
+            }
+        }
+        return $this->user;
     }
 
-    public function login(UserIdentity $identity,$duration)
+    public function login(UserIdentity $identity, $duration)
     {
-        parent::login($identity,$duration);
+        parent::login($identity, $duration);
     }
 }
