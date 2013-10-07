@@ -3,29 +3,6 @@ body{
   font: 12px Helvetica,Arial,sans-serif;
   min-width: 380px;
 }
-#header{
 
-}
-#header-nav{
-  height: 40px;
-  line-height: 40px;
-  background: url("/images/header/header-top-bg.png") repeat-x center;
-}
-#header-banner{
-  height: 60px;
-  background: #edede7;
-  margin-bottom: 40px;
-  @include box-shadow(#aaa 0px 1px 3px);
-}
-#footer{
-  height: 36px;
-  line-height: 36px;
-  position: relative;
-  bottom: 20px;
-  border-top: 1px solid #e1e1e1;
-  border-bottom: 1px solid #e1e1e1;
-  margin-top: 40px;
-  ul{
-    list-style: none;
-  }
-}
+@import "header";
+@import "footer";

@@ -1,0 +1,14 @@
+#header{
+
+}
+#header-nav{
+  height: 40px;
+  line-height: 40px;
+  background: url("/images/header/header-top-bg.png") repeat-x center;
+}
+#header-banner{
+  height: 60px;
+  background: #edede7;
+  margin-bottom: 40px;
+  @include box-shadow(#aaa 0px 1px 3px);
+}

@@ -1,0 +1,22 @@
+#footer {
+  height: 36px;
+  line-height: 36px;
+  position: relative;
+  bottom: 20px;
+  border-top: 1px solid #e1e1e1;
+  border-bottom: 1px solid #e1e1e1;
+  margin-top: 40px;
+  ul {
+    list-style: none;
+  }
+}
+
+#footer {
+  .fl {
+    color: #999;
+  }
+  ul.fr {
+    line-height: 2.6;
+  }
+
+}
